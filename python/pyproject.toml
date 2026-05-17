@@ -1,0 +1,30 @@
+[build-system]
+requires = ["maturin>=1.7,<2"]
+build-backend = "maturin"
+
+[project]
+name = "sports-pipeline"
+version = "0.1.0"
+description = "Сбор и анализ спортивной статистики (Polars + PyO3)"
+readme = "../README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "polars>=1.0.0",
+    "duckdb>=1.0.0",
+    "plotly>=5.18.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "maturin>=1.7"]
+
+[project.scripts]
+sports-analyze = "sports_pipeline.analyze:main"
+
+[tool.maturin]
+manifest-path = "../rust/sports-core/Cargo.toml"
+module-name = "sports_stats_core"
+features = ["extension-module"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

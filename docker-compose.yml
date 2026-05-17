@@ -1,0 +1,24 @@
+# Вспомогательные сервисы для расширенного уровня (стриминг / БД).
+# Базовый конвейер работает без Docker: Go → JSONL → Python.
+
+services:
+  nats:
+    image: nats:2.10-alpine
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+    command: ["-js", "-m", "8222"]
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: sports
+      POSTGRES_PASSWORD: sports
+      POSTGRES_DB: sports_stats
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

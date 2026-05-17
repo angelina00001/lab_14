@@ -1,0 +1,33 @@
+# Go
+bin/
+*.exe
+*.dll
+*.so
+*.test
+
+# Rust
+rust/**/target/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.mypy_cache/
+.pytest_cache/
+dist/
+build/
+
+# Данные и профили (генерируются локально)
+data/raw/*.jsonl
+data/processed/
+data/charts/
+data/profile/
+
+# IDE / OS
+.env
+.idea/
+.vscode/
+Thumbs.db
+Desktop.ini
